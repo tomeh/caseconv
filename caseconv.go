@@ -1,3 +1,7 @@
+// Copyright (c) 2019. Tom Harris <mrtom.h.84@gmail.com>. All rights reserved.
+// Use of this source code is governed by the MIT LICENSE
+// license that can be found in the LICENSE.txt file.
+
 package caseconv
 
 import (
