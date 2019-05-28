@@ -8,6 +8,9 @@ func TestToCamel(t *testing.T) {
 	tests := map[string]string{
 		"":         "",
 		"1":        "1",
+		"-1":       "1",
+		" 1":       "1",
+		"foo-":     "foo",
 		"12":       "12",
 		"one two":  "oneTwo",
 		"one  two": "oneTwo",
@@ -31,6 +34,9 @@ func TestToSnake(t *testing.T) {
 	tests := map[string]string{
 		"":           "",
 		"1":          "1",
+		"-1":         "1",
+		" 1":         "1",
+		"foo-":       "foo",
 		"12":         "12",
 		"one two":    "one_two",
 		"one  two":   "one_two",
@@ -55,6 +61,9 @@ func TestToPascal(t *testing.T) {
 	tests := map[string]string{
 		"":           "",
 		"1":          "1",
+		"-1":         "1",
+		" 1":         "1",
+		"foo-":       "Foo",
 		"12":         "12",
 		"one two":    "OneTwo",
 		"one  two":   "OneTwo",
@@ -79,6 +88,9 @@ func TestToKebab(t *testing.T) {
 	tests := map[string]string{
 		"":           "",
 		"1":          "1",
+		"-1":         "1",
+		" 1":         "1",
+		"foo-":       "foo",
 		"12":         "12",
 		"one two":    "one-two",
 		"one  two":   "one-two",

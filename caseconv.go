@@ -76,6 +76,7 @@ func ToKebab(s string) string {
 	return lowerWithSeparator(s, '-')
 }
 
+// Constructor for Converter.
 func NewConverter(s string) Converter {
 	return Converter{
 		str: s,
@@ -89,18 +90,29 @@ func isDelim(r rune) bool {
 func lowerWithSeparator(s string, sep rune) string {
 	var result bytes.Buffer
 
+	// Use this to track if we can use the separator.
+	// This stops multiple separators being placed in a row
+	// or at the start or end of string.
+	canSep := false
+
 	for i, r := range s {
 		if isDelim(r) {
-			result.WriteRune(sep)
-		} else if unicode.IsUpper(r) {
-			if i > 0 {
+			if canSep {
 				result.WriteRune(sep)
+				canSep = false
 			}
-			result.WriteRune(unicode.ToLower(r))
 		} else {
-			result.WriteRune(r)
+			if unicode.IsUpper(r) {
+				if canSep && i > 0 {
+					result.WriteRune(sep)
+				}
+				result.WriteRune(unicode.ToLower(r))
+			} else {
+				result.WriteRune(r)
+			}
+			canSep = true
 		}
 	}
 
-	return result.String()
+	return strings.Trim(result.String(), string(sep))
 }
